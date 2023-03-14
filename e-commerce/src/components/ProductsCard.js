@@ -1,10 +1,25 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const ProductsCard = ({ product }) => {
+  const navigate = useNavigate();
+  const _id = product.title;
+  const idString = _id.toLowerCase().split(" ").join("");
+
+  const handleDetails = () => {
+    navigate(`/product/${idString}`, {
+      state: {
+        item: product,
+      },
+    });
+  };
   return (
     <div className="group relative">
-      <div className="w-full h-96 cursor-pointer overflow-hidden">
+      <div
+        onClick={handleDetails}
+        className="w-full h-96 cursor-pointer overflow-hidden"
+      >
         <img
           className="w-full h-full object-cover group-hover:scale-110 duration-500"
           src={product.image}
@@ -25,9 +40,9 @@ const ProductsCard = ({ product }) => {
             </div>
             <p className="absolute z-20 w-[100px] text-gray-500 hover:text-gray-900 flex items-center gap-1 top-0 transform -translate-x-32 group-hover:translate-x-0 transition-transform cursor-pointer duration-500">
               add to cart{" "}
-              <spam>
+              <span>
                 <BsArrowRight />
-              </spam>
+              </span>
             </p>
           </div>
         </div>

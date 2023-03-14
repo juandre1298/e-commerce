@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Cart from "./pages/Cart";
+import Product from "./components/Product";
 import Footer from "./components/Footer";
 import {
   createBrowserRouter,
@@ -15,6 +16,7 @@ const Layout = () => {
   return (
     <div>
       <Header />
+      <ScrollRestoration />
       <Outlet />
       <Footer />
     </div>
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         loader: productsData,
+      },
+      {
+        path: "/product/:id",
+        element: <Product />,
       },
       {
         path: "/cart",
