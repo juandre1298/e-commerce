@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
 import { bagIcon, bagsIcon, cart, profile } from "../assets/index";
 
 const Header = () => {
@@ -33,10 +32,13 @@ const Header = () => {
             </li>
           </ul>
           <div className="relative flex item-center gap-5">
-            <img className="w-6 h-6" src={bagIcon} alt="cartImg" />
-            <span className="absolute w-6 top-1 left-0 text-sm flex items-center justify-center font-semibold">
-              {productData.length}
-            </span>
+            <Link to="/cart">
+              <img className="w-6 h-6" src={bagIcon} alt="cartImg" />
+              <span className="absolute w-6 top-1 left-0 text-sm flex items-center justify-center font-semibold">
+                {productData.length}
+              </span>
+            </Link>
+
             <img
               className="w-8 h-8 rounded-full"
               src={profile}
