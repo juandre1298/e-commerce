@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useInRouterContext } from "react-router-dom";
 import { bagIcon, bagsIcon, cart, profile } from "../assets/index";
 
 const Header = () => {
   const productData = useSelector((state) => state.shop.productData);
+
+  const userInfo = useSelector((state) => state.shop.userInfo);
 
   return (
     <div className="w-ful p-8 h-20 bg-white border-b-[1px] border-b-gray-800 font-titleFont sticky top-0 z-50">
@@ -38,12 +40,18 @@ const Header = () => {
                 {productData.length}
               </span>
             </Link>
-
-            <img
-              className="w-8 h-8 rounded-full"
-              src={profile}
-              alt="profile picture"
-            />
+            <Link to="/login">
+              <img
+                className="w-8 h-8 rounded-full"
+                src={userInfo ? userInfo.image : profile}
+                alt="profile picture"
+              />
+            </Link>
+            {userInfo && (
+              <p className="text-base font-titleFont font-semibold underline underline-offset-2">
+                {userInfo.name}
+              </p>
+            )}
           </div>
         </div>
       </div>

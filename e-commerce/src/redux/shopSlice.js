@@ -45,6 +45,12 @@ export const shopSlice = createSlice({
         item.quantity--;
       }
     },
+    addUser: (state, action) => {
+      state.userInfo = action.payload;
+    },
+    removeUser: (state) => {
+      state.userInfo = null;
+    },
   },
 });
 
@@ -54,5 +60,7 @@ export const {
   resetCart,
   incrementQuantity,
   decrementQuantity,
+  addUser,
+  removeUser,
 } = shopSlice.actions;
 export default shopSlice.reducer;
